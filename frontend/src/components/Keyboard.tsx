@@ -90,19 +90,26 @@ export function checkGuess(currentGuess: string, hiddenWord: string, e:React.Mou
                 console.log(data)
                 data.json().then(result => {
                     console.log(result);
-                    if (result['word'] == 'Green') {
-                        let result = ""
+                    let word = result['word'];
+                    if (word == 'Green') {
+                        let colours = ""
                         for (let i = 0; i < hiddenWord.length; i++) {
                             let letter = hiddenWord[i].toUpperCase();
                             console.log(letter)
-                            result = result + letter;
+                            colours = colours + letter;
                         }
-                        setGreen(result);
+                        setGreen(colours);
                     }
                     // // word{Letter1: 'Green', Letter2: 'Green', Letter3: 'Green', Letter4: 'Green', Letter5: 'Red'}
-                    // if (word) {
-
-                    // }
+                    let colours = ""
+                    for (let i = 0; i < hiddenWord.length; i++) {
+                        let letter = hiddenWord[i].toUpperCase();
+                        console.log(letter)
+                        colours = colours + letter;
+                        if (word['Letter1'] == 'Green') {
+                        
+                        }
+                    }
                 })
             }).catch(err => {
                 console.log(err)
