@@ -8,43 +8,43 @@ let buttonStyle ={
     padding: 5,
 };
 
-let buttonStyleCorrect ={
+let buttonGreen ={
     padding: 5,
     bg: 'success.emphasis'
 };
 
-let buttonStyleNearlyCorrect ={
+let buttonOrange ={
     padding: 5,
     bg: 'attention.emphasis'
 };
 
-let buttonStyleUsed ={
+let buttonRed ={
     padding: 5,
     bg: 'danger.emphasis'
 };
 
 
-// function getStyle({
-//     usedLetters,
-//     correctLetters,
-//     nearlyCorrectLetters,
-//     letter
-//   }: {
-//     usedLetters: string[];
-//     correctLetters: string[];
-//     nearlyCorrectLetters: string[];
-//     letter: string;
-//   }) {
-//     if (letter in correctLetters) {
-//         return buttonStyleCorrect;
-//     } else if (letter in nearlyCorrectLetters) {
-//         return buttonStyleNearlyCorrect;
-//     } else if (letter in usedLetters) {
-//         return buttonStyleUsed;
-//     } else {
-//         return buttonStyle;
-//     }
-// }
+function getStyle({
+    redLetters,
+    greenLetters,
+    orangeLetters,
+    letter
+  }: {
+    redLetters: string[];
+    greenLetters: string[];
+    orangeLetters: string[];
+    letter: string;
+  }) {
+    if (letter in greenLetters) {
+        return buttonGreen;
+    } else if (letter in orangeLetters) {
+        return buttonOrange;
+    } else if (letter in redLetters) {
+        return buttonRed;
+    } else {
+        return buttonStyle;
+    }
+}
 
 
 let setGuess: React.Dispatch<React.SetStateAction<string>> | null = null;
@@ -91,6 +91,11 @@ export function checkGuess(currentGuess: string, hiddenWord: string, e:React.Mou
                 console.log(data)
                 data.json().then(result => {
                     console.log(result);
+                    if (result['word'] == 'Green') {
+                        for (let i = 0; i < hiddenWord.length; i++) {
+                            console.log(hiddenWord[i]);
+                        }
+                    }
                 })
             }).catch(err => {
                 console.log(err)
@@ -118,9 +123,9 @@ export default function Keyboard({
     setError = _setError;
     console.log(hiddenWord);
 
-    let usedLetters = [];
-    let correctLetters = [];
-    let nearlyCorrectLetters = [];
+    const [orange, setOrange_] = useState<string>("");
+    const [red, setRed_] = useState<string>("");
+    const [green, setGreen_] = useState<string>("");
 
     return (
         <>
