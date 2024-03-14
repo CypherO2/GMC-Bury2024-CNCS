@@ -3,7 +3,7 @@
 import Keyboard from "@/components/Keyboard";
 import WordOutput from "@/components/WordOutput";
 import React, { useState } from 'react'
-import { BACKEND_SERVER_URL } from "../../constants";
+import { BACKEND_SERVER_URL, DEV_MODE } from "../../constants";
 import { Spinner } from '@primer/react'
 import { Blankslate } from '@primer/react/drafts'
 import { AlertIcon  } from '@primer/octicons-react'
@@ -19,9 +19,12 @@ export default function Game() {
             })
         }).catch(err => {
             console.log(err)
-            setError(`There was an error while communicating with the backend. Please try again later.\n${err}`)
+            if (DEV_MODE) {
+                setError(`There was an error while communicating with the backend. Please try again later.\n${err}`)
+            } else {
+                setError(`There was an error while communicating with the backend. Please try again later.`)
+            }
         })
-        // setWord((await data.json())['1stWord'] as string);
     }
 
     if (error) {
@@ -39,10 +42,11 @@ export default function Game() {
     }
 
     if (word != null) {
+        const data = {hiddenWord: (word as string), _setError: setError}
         return (
             <>
                 <WordOutput/>
-                <Keyboard/>
+                <Keyboard {...data}/>
             </>
         );
     }
