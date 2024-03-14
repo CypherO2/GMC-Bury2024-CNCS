@@ -5,6 +5,7 @@ import datetime
 from datetime import datetime
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from WordleFunc import *
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -12,14 +13,29 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 def getWord():
     df = pd.read_csv('Files/GMWords.csv')
     words = list(df.iloc[:,0].values)
-    return words
+    return jsonify({"1stWord":rand_word(words)})
 
-# print(words)
 
-def rand_word(words):
-    random_index = random.randrange(0, len(words))
-    word = words[random_index]
-    return jsonify("":word)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def menu():
 #     print("##- -Menu- -##")
