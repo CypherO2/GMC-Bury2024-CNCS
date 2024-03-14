@@ -138,7 +138,7 @@ If the word is wrong, you may guess again, but be warned, you only have 5 guesse
 
 ## Credit
 
-### Samuel Hulme
+### [Samuel Hulme](https://github.com/ajh123)
 
 ### Nik Todorov
 
