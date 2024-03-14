@@ -1,0 +1,36 @@
+@font-face {
+  font-family: myFont;
+  src: url(Whocats.ttf);
+}
+
+h1 {
+  font-family: myFont;
+}
+
+.MainBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  text-align: center;
+}
+
+.InnerBox {
+  margin-bottom: 1rem;
+  font-family: myFont;
+}
+
+input[type="text"] {
+  width: 4.5%;
+  height: 100%;
+  padding: 2rem 2rem;
+  margin: 8px 8px 22px 8px;
+  box-sizing: border-box;
+  font-size: 2rem;
+  font-family: myFont;
+}
+
+.Box1 {
+  font-family: myFont;
+}
