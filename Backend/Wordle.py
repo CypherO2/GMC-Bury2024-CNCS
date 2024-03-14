@@ -16,13 +16,16 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 def getWord():
     df = pd.read_csv('../Files/GMWords.csv')
     words = list(df.iloc[:,0].values)
-    return jsonify({"1stWord":rand_word(words)})
+    word = rand_word(words)
+    temp.append(word)
+    return jsonify({"1stWord":word})
 
 
 @app.route("/checkWord", methods=["POST"])
 def checkWord():
     word = request.json.get("word")
-    if word == temp[0]:
+    correctWord = request.json.get("correctWord")
+    if word == correctWord:
         return jsonify({"word": "Green"})
     letter_list = word.split()
     letters = temp[0].split()
