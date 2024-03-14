@@ -21,11 +21,29 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
+"""
+    This function reads a CSV file containing words, selects a random word from the list, and returns it
+    as a JSON response.
+    :return: The `getWord` function returns a JSON response containing the key "1stWord" with a randomly
+    selected word from the list of words read from the "GMWords.csv" file.
+"""
+
+
 @app.route("/getWord", methods=["GET"])
 def getWord():
     df = pd.read_csv("../Files/GMWords.csv")
     words = list(df.iloc[:, 0].values)
     return jsonify({"1stWord": rand_word(words)})
+
+
+"""
+    The function `checkWord` compares a given word with a predefined word and provides feedback on each
+    letter's correctness.
+    :return: The function `checkWord()` is returning a JSON response with the status of each letter in
+    the word compared to the first letter in the `temp` list. If the word matches the first letter in
+    `temp`, it returns "Green". If a letter in the word matches the corresponding position in the `temp`
+    list, it returns "Green" for that letter. If a letter in the word
+"""
 
 
 @app.route("/checkWord", methods=["POST"])
@@ -57,58 +75,8 @@ def checkWord():
     )
 
 
+# The `if __name__ == "__main__":` block in Python is a common idiom used to ensure that the
+# `app.run()` method is only called when the script is executed directly, rather than when it is
+# imported as a module in another script.
 if __name__ == "__main__":
     app.run()
-
-
-# def menu():
-#     print("##- -Menu- -##")
-#     print("## 1) Wordle##")
-#     print("## 2) Exit  ##")
-#     print("##----------##")
-#     user_input = input("what do you want to do?:\n> > > ")
-#     while user_input > 2 and user_input < 1:
-#         return menu()
-
-
-# returns random word in json: import random
-# import csv
-#
-#
-
-#
-#
-
-#
-
-# def getnums():
-#     wordsList = []
-#     with open("./GMWords.csv", 'r') as file:
-#         csvreader = csv.reader(file)
-#         for row in csvreader:
-#             wordsList.append(row)
-
-#     lennList = len(wordsList)
-
-#     randomNums=[]
-#     for i in range(1):
-#         r = random.randint(0,lennList)
-#         if r not in randomNums:
-#             randomNums.append(r)
-
-#     randomWordsList = []
-#     for i in range(len(randomNums)):
-#         randomWordsList.append(wordsList[i])
-
-#     Words_L = []
-#     for i in randomWordsList:
-
-#         wordOne = i[0]
-
-#         json = {
-#             "word":wordOne,
-
-#         }
-#         Words_L.append(json)
-
-#     return jsonify({"WordsList": Words_L})
