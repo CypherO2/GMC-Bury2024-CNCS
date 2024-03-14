@@ -1,6 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the frontend for the Worldle game.
 
 ## Getting Started
+
+Make sure you change your server URL inside `sec/constants.ts`. An example of this looks like:
+
+```typescript
+export const SERVER_URL = "https://didactic-capybara-g5g6x6gq4x4h95wq-5000.app.github.dev";
+```
+
+> [!IMPORTANT]
+> If you are running inside a GitHub codespace, make sure the port of the backend **is made public**!
+> If the backend port is not public then the frontend cannot connect to the backend.
+
 
 First, run the development server:
 

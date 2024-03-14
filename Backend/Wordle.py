@@ -9,13 +9,14 @@ from WordleFunc import *
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-@app.route('/getWord', methods=['POST'])
+@app.route('/getWord', methods=['GET'])
 def getWord():
-    df = pd.read_csv('Files/GMWords.csv')
+    df = pd.read_csv('../Files/GMWords.csv')
     words = list(df.iloc[:,0].values)
     return jsonify({"1stWord":rand_word(words)})
 
-
+if __name__ == "__main__":
+    app.run()
 
 
 
