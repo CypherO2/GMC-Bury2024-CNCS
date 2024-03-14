@@ -1,7 +1,6 @@
 # GMC-Bury2024-CNCS
 GMC Repo
 
-## Installing
+## Frontend
 
-1. Use `npm i` to install dependencies
-2. Use `npm start` to run the frontend.
+To see how to run the frontend open the [frontend README](./frontend/README.md)
