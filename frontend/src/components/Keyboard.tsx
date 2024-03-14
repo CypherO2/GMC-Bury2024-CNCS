@@ -6,14 +6,61 @@ let buttonStyle ={
     padding: 5,
 };
 
-export default function Keyboard() {
+let buttonStyleCorrect ={
+    padding: 5,
+    backgroundColor: 'success.emphasis'
+};
+
+let buttonStyleNearlyCorrect ={
+    padding: 5,
+    backgroundColor: 'attention.emphasis'
+};
+
+let buttonStyleUsed ={
+    padding: 5,
+    backgroundColor: 'done.muted'
+};
+
+
+// function getStyle({
+//     usedLetters,
+//     correctLetters,
+//     nearlyCorrectLetters,
+//     letter
+//   }: {
+//     usedLetters: string[];
+//     correctLetters: string[];
+//     nearlyCorrectLetters: string[];
+//     letter: string;
+//   }) {
+//     if (letter in correctLetters) {
+//         return buttonStyleCorrect;
+//     } else if (letter in nearlyCorrectLetters) {
+//         return buttonStyleNearlyCorrect;
+//     } else if (letter in usedLetters) {
+//         return buttonStyleUsed;
+//     } else {
+//         return buttonStyle;
+//     }
+// }
+
+export default function Keyboard({
+    usedLetters,
+    correctLetters,
+    nearlyCorrectLetters
+  }: Readonly<{
+    usedLetters: string[];
+    correctLetters: string[];
+    nearlyCorrectLetters: string[];
+  }>) {
     return (
         <Box sx={{borderRadius: 2, borderWidth: 1, borderStyle: 'solid', borderColor: 'border.default', p: 3, width: '70%'}}>
             <Box sx={{display: 'grid', gridTemplateColumns: '0.4fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr', gridGap: 3}}>
                 <span></span>
-                <Button sx={buttonStyle}>Q</Button>
-                <Button sx={buttonStyle}>W</Button>
-                <Button sx={buttonStyle}>E</Button>
+                {/* <Button sx={getStyle({usedLetters, correctLetters, nearlyCorrectLetters, "Q"})}>Q</Button> */}
+                <Button sx={buttonStyleCorrect}>Q</Button>
+                <Button sx={buttonStyleNearlyCorrect}>W</Button>
+                <Button sx={buttonStyleUsed}>E</Button>
                 <Button sx={buttonStyle}>R</Button>
                 <Button sx={buttonStyle}>T</Button>
                 <Button sx={buttonStyle}>Y</Button>
