@@ -31,16 +31,15 @@ def getWord():
 @app.route("/checkWord", methods=["POST"])
 def checkWord():
     word = request.json.get("word")
-    word = word.lower().capitalise()
-    if word == temp[0]:
+    word = word.capitalize().lower()
+    correctWord = request.json.get("correctWord").capitalize().lower()
+    if word == correctWord:
         return jsonify({"word": "Green"})
-    letter_list = word.split()
-    letters = temp[0].split()
     count = 0
-    for Abc in letter_list:
-        if letter_list[count] == letters[count]:
+    for Abc in word:
+        if word[count] == correctWord[count]:
             letter_dict[count] = "Green"
-        elif letter_list[count] in letters:
+        elif word[count] in correctWord:
             letter_dict[count] = "Orange"
         else:
             letter_dict[count] = "Red"
