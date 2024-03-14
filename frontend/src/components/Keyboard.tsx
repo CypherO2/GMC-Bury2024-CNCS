@@ -91,24 +91,36 @@ export function checkGuess(currentGuess: string, hiddenWord: string, e:React.Mou
                 data.json().then(result => {
                     console.log(result);
                     let word = result['word'];
+                    // // word{Letter1: 'Green', Letter2: 'Green', Letter3: 'Green', Letter4: 'Green', Letter5: 'Red'}
+                    // let colours = ""
+                    let green = ""
+                    let orange = ""
+                    let red = ""
+                    for (let i = 0; i < currentGuess.length; i++) {
+                        let letter = currentGuess[i].toUpperCase();
+                        console.log(letter)
+                        // colours = colours + letter;
+                        if (word[`Letter${i+1}`] == 'Green') {
+                            green = green + letter;
+                        }
+                        if (word[`Letter${i+1}`] == 'Orange') {
+                            orange = orange + letter
+                        }
+                        if (word[`Letter${i+1}`] == 'Red') {
+                            red = red + letter
+                        }
+                    }
+                    setGreen(green);
+                    setOrange(orange);
+                    setRed(red);
                     if (word == 'Green') {
                         let colours = ""
-                        for (let i = 0; i < hiddenWord.length; i++) {
-                            let letter = hiddenWord[i].toUpperCase();
+                        for (let i = 0; i < currentGuess.length; i++) {
+                            let letter = currentGuess[i].toUpperCase();
                             console.log(letter)
                             colours = colours + letter;
                         }
                         setGreen(colours);
-                    }
-                    // // word{Letter1: 'Green', Letter2: 'Green', Letter3: 'Green', Letter4: 'Green', Letter5: 'Red'}
-                    let colours = ""
-                    for (let i = 0; i < hiddenWord.length; i++) {
-                        let letter = hiddenWord[i].toUpperCase();
-                        console.log(letter)
-                        colours = colours + letter;
-                        if (word['Letter1'] == 'Green') {
-                        
-                        }
                     }
                 })
             }).catch(err => {
@@ -147,7 +159,7 @@ export default function Keyboard({
 
     return (
         <>
-            <h1 className="m-5 p-5">{guess}</h1>
+            <h1>{guess}</h1>
             <Box sx={{borderRadius: 2, borderWidth: 1, borderStyle: 'solid', borderColor: 'border.default', p: 3, width: '70%'}}>
                 <Box sx={{display: 'grid', gridTemplateColumns: '0.4fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr', gridGap: 3}}>
                     <span></span>
