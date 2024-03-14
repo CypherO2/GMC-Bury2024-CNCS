@@ -12,15 +12,11 @@ letter_dict = {}
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-
-@app.route("/getWord", methods=["GET"])
+@app.route('/getWord', methods=['GET'])
 def getWord():
-    df = pd.read_csv("../Files/GMWords.csv")
-    words = list(df.iloc[:, 0].values)
-    word = rand_word(words)
-    temp.append(word)
-    return jsonify({"1stWord": word})
+    df = pd.read_csv('../Files/GMWords.csv')
+    words = list(df.iloc[:,0].values)
+    return jsonify({"1stWord":rand_word(words)})
 
 
 @app.route("/checkWord", methods=["POST"])
