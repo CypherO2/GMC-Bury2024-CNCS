@@ -147,7 +147,7 @@ export default function Keyboard({
 
     return (
         <>
-            {guess}
+            <h1 className="m-5 p-5">{guess}</h1>
             <Box sx={{borderRadius: 2, borderWidth: 1, borderStyle: 'solid', borderColor: 'border.default', p: 3, width: '70%'}}>
                 <Box sx={{display: 'grid', gridTemplateColumns: '0.4fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr', gridGap: 3}}>
                     <span></span>
